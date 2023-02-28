@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      DAFTAR PEGAWAI
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+   
+    <ion-list>
+      <ion-item *ngFor="let use of user" (click)="edit(true,use.id)">{{ use.first_name }}</ion-item>
+    </ion-list>
+ 
+
+  
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="tambah()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+
+
+<ion-content class="ion-padding">
+  
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Form Edit User</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="tutup(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input [(ngModel)]="name" placeholder="Input Nama"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Job</ion-label>
+          <ion-input [(ngModel)]="job" placeholder="Input Job"></ion-input>
+        </ion-item>
+
+        <ion-button (click)="tambah()" expand="block"  shape="round">
+          Simpan
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
