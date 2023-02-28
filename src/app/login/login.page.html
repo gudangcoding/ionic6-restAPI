@@ -1,9 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <div id="container">
+    <ion-avatar class="image-center">
+      <img alt="APlikasi Crud Ionic" src="../../assets/avatar.svg" />
+    </ion-avatar>
+    <ion-list no-lines>
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
 
-<ion-content>
+  <ion-button expand="block" (click)="cekLogin()">
+    Login
+  </ion-button>
+  <ion-button (click)="daftarMember(true)" expand="block" fill="outline">
+    Daftar
+  </ion-button>
+  <ion-button expand="block" color="primary" fill="clear" shape="round">
+    Lupa Password
+  </ion-button>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Form Pendaftaran</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="daftarMember(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div id="container">
+          <ion-list no-lines>
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" [(ngModel)]="email"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </ion-list>
+      
+        
+        <ion-button (click)="simpan(true)" expand="block" fill="outline">
+          Daftar
+        </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>
+
+
+

@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RestApi } from '../provider/RestApi';
-//import { HTTP } from '@ionic-native/http';
+import { IonicStorageModule } from '@ionic/storage';
+
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule,HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [RestApi,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule,HttpClientModule,IonicStorageModule.forRoot(), IonicModule.forRoot(), AppRoutingModule],
+  providers: [RestApi,Storage,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

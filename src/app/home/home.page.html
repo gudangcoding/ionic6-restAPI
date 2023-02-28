@@ -3,6 +3,8 @@
     <ion-title>
       DAFTAR PEGAWAI
     </ion-title>
+    <ion-icon slot="end" name="person" (click)="logout()"></ion-icon>
+   
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +17,7 @@
 
   
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="tambah()">
+  <ion-fab vertical="bottom" horizontal="end" (click)="tambah()">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

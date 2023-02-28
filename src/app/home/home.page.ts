@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { RestApi } from 'src/provider/RestApi';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomePage {
     private db:RestApi,
     private nav: NavController,
     private router: Router,
+    private storage : Storage,
     private route: ActivatedRoute) {}
   user:any=[];
   name:any;
@@ -65,6 +67,11 @@ export class HomePage {
       // let navParams = this.nav.getCurrentNavigation().extras.state;
       // console.log(navParams);
     });
+  }
+
+  logout(){
+    this.storage.clear();
+    this.router.navigate(['/login']);
   }
 
 }
