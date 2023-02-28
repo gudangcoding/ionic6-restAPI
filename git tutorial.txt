@@ -1,0 +1,19 @@
+echo "# ionic6-crud" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/gudangcoding/ionic6-crud.git
+git push -u origin main
+
+create splash
+npm install -g cordova-res
+
+buat folder dan file
+resources/
+├── icon.png
+└── splash.png
+
+generate spalsh icon
+cordova-res ios --skip-config --copy
+cordova-res android --skip-config --copy

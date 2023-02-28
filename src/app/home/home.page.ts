@@ -17,7 +17,8 @@ export class HomePage {
     private router: Router,
     private storage : Storage,
     private route: ActivatedRoute) {}
-  user:any=[];
+  users:any=[];
+  userEdit:any=[];
   name:any;
   job:any;
   
@@ -29,11 +30,9 @@ export class HomePage {
     this.db.get('users').subscribe((res:any)=>{
         console.log(res.data);
         for (let user of res.data) {
-          this.user.push(user);
-        }
-        
-    });
-    
+          this.users.push(user);
+        }    
+    }); 
    }
 
    tambah(){
@@ -41,21 +40,22 @@ export class HomePage {
       name: this.name,
       job: this.job
     }
-    this.db.post(body,'users').subscribe((data)=>{
-      console.log(data);
-      
+    this.db.post(body,'users').subscribe((res:any)=>{
+      this.users = res.data; 
     });
    }
 
    isModalOpen = false;
 
    edit(isOpen: boolean,id:any) {
-     
-     let params: any = {
-          id: id
-         }
-    this.nav.navigateForward('/home', { state: params });
     this.isModalOpen = isOpen;
+    this.db.get('users/'+id).subscribe((res:any)=>{
+      this.userEdit=res.data;
+      // for(let user of res.data){
+      //   this.users.push(user);
+      // }
+       console.log(res.data);
+    });
    }
 
    tutup(isOpen: boolean) {
