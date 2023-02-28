@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { RestApi } from 'src/provider/RestApi';
 import { Storage } from '@ionic/storage';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,11 +15,28 @@ export class HomePage {
     private nav: NavController,
     private router: Router,
     private storage : Storage,
-    private route: ActivatedRoute) {}
-  users:any=[];
-  userEdit:any=[];
-  name:any;
-  job:any;
+    private actRouter: ActivatedRoute) {}
+  
+    users:any=[];
+    userEdit:any="";
+    id: any = "";
+    email: any ;
+    first_name: any ;
+    last_name:any;
+    avatar: any ;
+    name: any = "";
+    job: any = "";
+    
+  
+    ngOnInit() {
+      this.actRouter.params.subscribe((data: any) => {
+        this.id = data.id;
+        this.email = data.email;
+        this.first_name = data.first_name;
+        this.last_name = data.last_name;
+        this.avatar = data.avatar;
+      });
+    }
   
  ionViewWillEnter(){
     this.tampil()
@@ -47,15 +63,18 @@ export class HomePage {
 
    isModalOpen = false;
 
-   edit(isOpen: boolean,id:any) {
-    this.isModalOpen = isOpen;
-    this.db.get('users/'+id).subscribe((res:any)=>{
+   openForm(id:any) {
+    console.log('idnya adalah : '+id);
+    if(id==null){
+      this.isModalOpen = true;
+    }else{
+      this.isModalOpen = true;
+      this.db.get('users/'+id).subscribe((res:any)=>{
       this.userEdit=res.data;
-      // for(let user of res.data){
-      //   this.users.push(user);
-      // }
-       console.log(res.data);
+      console.log(this.userEdit);
     });
+    }
+    
    }
 
    tutup(isOpen: boolean) {
@@ -63,10 +82,7 @@ export class HomePage {
   }
 
   update(){
-    this.route.queryParams.subscribe((params) => {  
-      // let navParams = this.nav.getCurrentNavigation().extras.state;
-      // console.log(navParams);
-    });
+    
   }
 
   logout(){

@@ -11,7 +11,7 @@
 <ion-content>
    
     <ion-list>
-      <ion-item *ngFor="let user of users;  let i=index" (click)="edit(true,user.id)">
+      <ion-item *ngFor="let user of users;  let i=index" (click)="openForm(user.id)">
         <ion-avatar slot="start">
           <img src="{{user.avatar}}" />
         </ion-avatar>
@@ -32,14 +32,14 @@
 
 
 
-  <!-- <div *ngIf="userEdit.length==0">
-    <h3 class="text-center">No Data</h3>
-  </div> -->
+  <div *ngIf="userEdit.length==0">
+    
+  </div>
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Form Edit User</ion-title>
+          <ion-title>Form User</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="tutup(false)">Close</ion-button>
           </ion-buttons>
@@ -47,13 +47,22 @@
       </ion-header>
       <ion-content class="ion-padding">
         <ion-item>
-          <ion-label position="stacked">Name</ion-label>
-          <ion-input [(ngModel)]="name" value="*{{users.name}}"></ion-input>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="email" value="{{userEdit.email}}"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">Job</ion-label>
-          <ion-input [(ngModel)]="job" value="*{{users.job}}"></ion-input>
+          <ion-label position="stacked">First Name</ion-label>
+          <ion-input type="text" [(ngModel)]="first_name" value="{{userEdit.first_name}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Last Name</ion-label>
+          <ion-input text="text" [(ngModel)]="last_name" value="{{userEdit.last_name}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Avatar</ion-label>
+          <img src="{{userEdit.avatar}}" alt="ionic crud">
+          <ion-input type="text" [(ngModel)]="avatar" value="{{userEdit.avatar}}"></ion-input>
         </ion-item>
 
         <ion-button (click)="tambah()" expand="block"  shape="round">
